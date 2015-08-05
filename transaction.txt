@@ -1,6 +1,6 @@
-﻿1. Մինչև մի տրանզեքշնն չի վերջանու հաջորդն չի անում;
+﻿1. Մինչև մի տրանզեքշնն չի վերջանում հաջորդն չի անում;
 2. Եթե սխալներ է եղել ապա բոլոր փոփոխություններն տվյալների բազայի ետ են գալիս;  
-3. Օգտագործվու է 3 հրաման՝ START TRANSACTION, COMMIT և ROLLBACK;
+3. Օգտագործվում է 3 հրաման՝ START TRANSACTION, COMMIT և ROLLBACK;
 4. Սինտաքսիս
 START TRANSACTION;
 INSERT INTO Books VALUES (101, ‘Letters to a Young Poet’, 1934);
@@ -35,6 +35,12 @@ ROLLBACK TO SAVEPOINT sp1;
 INSERT INTO Books VALUES (107, ‘Postcards’, 1992);
 INSERT INTO Books VALUES (108, ‘The Shipping News’, 1993);
 COMMIT;
+
+7. SET AUTOCOMMIT=0; ավտոքոմիտ ֆունկցիան դեակտիվացնել, SET AUTOCOMMIT=1; ավտոքոմիտ ֆունկցիան ակտիվացնել ;
+
+8. SELECT @@autocommit; Վերադարձնում է ավտոքոմիտի արժեքը, կարող է վերադարձնել 0 կամ 1 ;
+
+9.  Եթե @@autocommit=0 ապա յուրաքանչյուր query-ից հետո պետք է տրվի COMMIT և ROLLBACK հրահանգները;
 
 
 
