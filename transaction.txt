@@ -1,0 +1,40 @@
+﻿1. Մինչև մի տրանզեքշնն չի վերջանու հաջորդն չի անում;
+2. Եթե սխալներ է եղել ապա բոլոր փոփոխություններն տվյալների բազայի ետ են գալիս;  
+3. Օգտագործվու է 3 հրաման՝ START TRANSACTION, COMMIT և ROLLBACK;
+4. Սինտաքսիս
+START TRANSACTION;
+INSERT INTO Books VALUES (101, ‘Letters to a Young Poet’, 1934);
+INSERT INTO Books VALUES (102, ‘Winesburg, Ohio’, 1919);
+COMMIT;
+ 
+START TRANSACTION;
+INSERT INTO Books VALUES (101, ‘Letters to a Young Poet’, 1934);
+INSERT INTO Books VALUES (102, ‘Winesburg, Ohio’, 1919);
+ROLLBACK;
+
+5. SAVEPOINT-ը կարելի է ավելացնել տրանսակցիայում ցանկացած կետում: 
+Երբ ծրագիրը վերադառնում է SAVEPOINT-ի մասին ապա նրանից հետո եկող բոլոր 
+փոփոխությունները չեղյալ են համարվում իսկ նրանից առաջ եղածները պահվում են: Սինտաքսը՝
+SAVEPOINT <savepoint name>;   Օրինակ՝
+
+START TRANSACTION;
+INSERT INTO Books VALUES (103, ‘Hell\’s Angels’, 1966);
+INSERT INTO Books VALUES (104, ‘Black Elk Speaks’, 1932);
+SAVEPOINT sp1;
+
+6. ROLLBACK TO SAVEPOINT վերադառնալ այդ սեյվ արած կետին: Սինտաքսը՝
+ROLLBACK TO SAVEPOINT <savepoint name>;   Օրինակ՝
+
+START TRANSACTION;
+INSERT INTO Books VALUES (103, ‘Hell\’s Angels’, 1966);
+INSERT INTO Books VALUES (104, ‘Black Elk Speaks’, 1932);
+SAVEPOINT sp1;
+INSERT INTO Books VALUES (105, ‘Noncomformity’, 1996);
+INSERT INTO Books VALUES (106, ‘A Confederacy of Dunces’, 1980);
+ROLLBACK TO SAVEPOINT sp1;
+INSERT INTO Books VALUES (107, ‘Postcards’, 1992);
+INSERT INTO Books VALUES (108, ‘The Shipping News’, 1993);
+COMMIT;
+
+
+
